@@ -1,4 +1,4 @@
-package com.codersdc.codersdclibvideoplayer;
+package com.codersdc.codersdclibvideoplayer.helpers;
 
 import com.google.android.exoplayer2.util.MimeTypes;
 
