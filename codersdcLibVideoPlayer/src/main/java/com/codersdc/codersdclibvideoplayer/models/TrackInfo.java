@@ -11,7 +11,7 @@ public class TrackInfo {
     public int height;
     public int width;
 
-    public TrackInfo(int groupIndex, int trackIndex, Format format, String name,boolean isSelected,int height,int width) {
+    public TrackInfo(int groupIndex, int trackIndex, Format format, String name, boolean isSelected, int height, int width) {
         this.groupIndex = groupIndex;
         this.trackIndex = trackIndex;
         this.format = format;

@@ -28,14 +28,18 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-    /*  implement ExoPlayer */
-    implementation 'com.google.android.exoplayer:exoplayer-core:2.8.4'
-    implementation 'com.google.android.exoplayer:exoplayer-ui:2.8.4'
-    implementation 'com.google.android.exoplayer:exoplayer-hls:2.8.4'
-    implementation 'com.google.android.exoplayer:exoplayer-dash:2.8.4'
-    implementation 'com.google.android.exoplayer:exoplayer-smoothstreaming:2.8.4'
-    implementation 'com.google.android.exoplayer:exoplayer:r1.5.8'
-    implementation 'com.google.android.gms:play-services-cast-framework:19.0.0'
-    implementation 'com.google.android.exoplayer:extension-cast:2.8.4'
 
+    /*  implement ExoPlayer */
+    implementation 'com.google.android.exoplayer:exoplayer-core:2.13.1'
+    implementation 'com.google.android.exoplayer:exoplayer-ui:2.13.1'
+    implementation 'com.google.android.exoplayer:exoplayer-hls:2.13.1'
+    implementation 'com.google.android.exoplayer:exoplayer-dash:2.13.1'
+    implementation 'com.google.android.exoplayer:exoplayer-smoothstreaming:2.13.1'
+    implementation 'com.google.android.exoplayer:exoplayer:2.13.1'
+    implementation 'com.google.android.exoplayer:extension-cast:2.13.1'
+    implementation 'com.google.android.exoplayer:extension-cronet:2.13.1'
+    implementation 'com.google.android.exoplayer:extension-mediasession:2.13.1'
+
+    implementation 'com.google.android.gms:play-services-cast-framework:19.0.0'
+    
 }
