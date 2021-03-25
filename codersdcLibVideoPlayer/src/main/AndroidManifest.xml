@@ -1,23 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.codersdc.codersdclibvideoplayer">
+    
+    <application android:name=".CodersDCApp">
 
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-
-    <application android:name=".MyApplication">
-        <service
-            android:name=".service.MusicService"
-            android:enabled="true" />
-        <receiver
-            android:name=".service.NotificationReceiver"
-            android:enabled="true">
-            <intent-filter>
-                <action android:name="NEXT" />
-                <action android:name="PREVIOUS" />
-                <action android:name="PLAY" />
-            </intent-filter>
-        </receiver>
-        <meta-data
-            android:name="com.google.android.gms.cast.framework.OPTIONS_PROVIDER_CLASS_NAME"
-            android:value="com.google.android.exoplayer2.ext.cast.DefaultCastOptionsProvider" />
     </application>
 </manifest>

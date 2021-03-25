@@ -6,7 +6,7 @@ import android.app.NotificationManager;
 import android.content.Context;
 
 
-public class MyApplication extends Application {
+public class CodersDCApp extends Application {
 
     public static final String CHANNEL_ID_1 = "CHANNEL_1";
     public static final String CHANNEL_ID_2 = "CHANNEL_2";
@@ -17,9 +17,9 @@ public class MyApplication extends Application {
 
 
     public static final boolean DEBUG_MODE = true;
-    private static MyApplication sInstance;
+    private static CodersDCApp sInstance;
 
-    public static synchronized MyApplication getInstance() {
+    public static synchronized CodersDCApp getInstance() {
         return sInstance;
     }
 
