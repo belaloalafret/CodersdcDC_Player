@@ -47,7 +47,6 @@ import static com.google.android.exoplayer2.util.MimeTypes.APPLICATION_SUBRIP;
 
 public class PlayerManager implements Player.EventListener, SessionAvailabilityListener {
 
-    private final ArrayList<Sample> mediaQueue;
     private PlayerView localPlayerView;
     private SimpleExoPlayer exoPlayer;
     private DataSource.Factory dataSourceFactory;
@@ -55,6 +54,7 @@ public class PlayerManager implements Player.EventListener, SessionAvailabilityL
     private boolean isFromFile;
     private MediaSourceFactory mediaSourceFactory;
     private SparseArray<DefaultTrackSelector.SelectionOverride> overrides = null;
+    private final ArrayList<Sample> mediaQueue;
     private final PlayerControlView castControlView;
     private CastPlayer castPlayer;
     private List<MediaItem> mediaItems;

@@ -5,7 +5,6 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 
-
 public class CodersDCApp extends Application {
 
     public static final String CHANNEL_ID_1 = "CHANNEL_1";
@@ -37,7 +36,7 @@ public class CodersDCApp extends Application {
     public void onCreate() {
         super.onCreate();
         sInstance = this;
-        //createNotificationChannel();
+        createNotificationChannel();
     }
 
     public void createNotificationChannel() {
