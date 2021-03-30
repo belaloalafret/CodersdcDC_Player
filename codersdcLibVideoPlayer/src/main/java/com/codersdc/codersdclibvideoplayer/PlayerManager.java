@@ -47,26 +47,21 @@ import static com.google.android.exoplayer2.util.MimeTypes.APPLICATION_SUBRIP;
 
 public class PlayerManager implements Player.EventListener, SessionAvailabilityListener {
 
-    private PlayerView localPlayerView;
-    private SimpleExoPlayer exoPlayer;
-    private DataSource.Factory dataSourceFactory;
-    private DefaultTrackSelector trackSelector;
-    private boolean isFromFile;
-    private MediaSourceFactory mediaSourceFactory;
-    private SparseArray<DefaultTrackSelector.SelectionOverride> overrides = null;
     private final ArrayList<Sample> mediaQueue;
     private final PlayerControlView castControlView;
-    private CastPlayer castPlayer;
+    private final PlayerView localPlayerView;
+    private final SimpleExoPlayer exoPlayer;
+    private final DataSource.Factory dataSourceFactory;
+    private final DefaultTrackSelector trackSelector;
+    private final boolean isFromFile;
+    private final MediaSourceFactory mediaSourceFactory;
+    private final CastPlayer castPlayer;
+    private final PlayerStateChangedListener playerStateChangedListener;
+    private SparseArray<DefaultTrackSelector.SelectionOverride> overrides = null;
     private List<MediaItem> mediaItems;
-    private DefaultTrackSelector.Parameters trackSelectorParameters;
-    private TrackGroupArray lastSeenTrackGroupArray;
     private boolean startAutoPlay;
-    private int startWindow;
-    private long startPosition;
-    private Context context;
     private Player currentPlayer;
     private int currentItemIndex;
-    private PlayerStateChangedListener playerStateChangedListener;
 
     public PlayerManager(
             PlayerView localPlayerView,
@@ -77,7 +72,6 @@ public class PlayerManager implements Player.EventListener, SessionAvailabilityL
             PlayerStateChangedListener playerStateChangedListener) {
 
         this.playerStateChangedListener = playerStateChangedListener;
-        this.context = context;
         this.castControlView = castControlView;
         this.isFromFile = isFromFile;
         this.localPlayerView = localPlayerView;
@@ -87,12 +81,9 @@ public class PlayerManager implements Player.EventListener, SessionAvailabilityL
         dataSourceFactory = DemoUtil.getDataSourceFactory(/* context= */ context);
         DefaultTrackSelector.ParametersBuilder builder =
                 new DefaultTrackSelector.ParametersBuilder(/* context= */ context);
-        trackSelectorParameters = builder.build();
+        DefaultTrackSelector.Parameters trackSelectorParameters = builder.build();
         trackSelector = new DefaultTrackSelector(/* context= */ context);
         trackSelector.setParameters(trackSelectorParameters);
-
-
-        lastSeenTrackGroupArray = null;
 
         RenderersFactory renderersFactory =
                 DemoUtil.buildRenderersFactory(/* context= */ context, false);
@@ -191,7 +182,10 @@ public class PlayerManager implements Player.EventListener, SessionAvailabilityL
 
     public void setQuality(int position, int type) {
         ClearOverrides();
-        TrackGroupArray trackGroupArray = getTrackSelector().getCurrentMappedTrackInfo().getTrackGroups(0);
+        TrackGroupArray trackGroupArray = null;
+        if (getTrackSelector().getCurrentMappedTrackInfo() != null) {
+            trackGroupArray = getTrackSelector().getCurrentMappedTrackInfo().getTrackGroups(0);
+        }
         DefaultTrackSelector defaultTrackSelector = getTrackSelector();
         if (type == 0) { // 0 Auto
             apply(null, trackGroupArray, defaultTrackSelector);
@@ -203,7 +197,10 @@ public class PlayerManager implements Player.EventListener, SessionAvailabilityL
     }
 
     public boolean isSelectedQuality(int position, boolean isAuto) {
-        TrackGroupArray trackGroupArray = trackSelector.getCurrentMappedTrackInfo().getTrackGroups(0);
+        TrackGroupArray trackGroupArray = null;
+        if (trackSelector.getCurrentMappedTrackInfo() != null) {
+            trackGroupArray = trackSelector.getCurrentMappedTrackInfo().getTrackGroups(0);
+        }
         DefaultTrackSelector.Parameters parameters = trackSelector.getParameters();
         DefaultTrackSelector.SelectionOverride override = parameters.getSelectionOverride(0, trackGroupArray);
         if (isAuto) {
@@ -235,15 +232,21 @@ public class PlayerManager implements Player.EventListener, SessionAvailabilityL
     }
 
     public void changeSubtitleTextFont(int fontSize) {
-        localPlayerView.getSubtitleView().setFixedTextSize(TypedValue.COMPLEX_UNIT_PX, fontSize);
+        if (localPlayerView != null && localPlayerView.getSubtitleView() != null) {
+            localPlayerView.getSubtitleView().setFixedTextSize(TypedValue.COMPLEX_UNIT_PX, fontSize);
+        }
     }
 
     public void showSubtitle() {
-        localPlayerView.getSubtitleView().setVisibility(View.VISIBLE);
+        if (localPlayerView != null && localPlayerView.getSubtitleView() != null) {
+            localPlayerView.getSubtitleView().setVisibility(View.VISIBLE);
+        }
     }
 
     public void hideSubtitle() {
-        localPlayerView.getSubtitleView().setVisibility(View.GONE);
+        if (localPlayerView != null && localPlayerView.getSubtitleView() != null) {
+            localPlayerView.getSubtitleView().setVisibility(View.GONE);
+        }
     }
 
     /**
@@ -419,19 +422,16 @@ public class PlayerManager implements Player.EventListener, SessionAvailabilityL
 
     private void maybeSetCurrentItemAndNotify(int currentItemIndex) {
         if (this.currentItemIndex != currentItemIndex) {
-            int oldIndex = this.currentItemIndex;
             this.currentItemIndex = currentItemIndex;
         }
     }
 
     protected void clearStartPosition() {
         startAutoPlay = true;
-        startWindow = C.INDEX_UNSET;
-        startPosition = C.TIME_UNSET;
     }
 
     @Override
-    public void onTimelineChanged(Timeline timeline, int reason) {
+    public void onTimelineChanged(@NonNull Timeline timeline, int reason) {
         updateCurrentItemIndex();
     }
 

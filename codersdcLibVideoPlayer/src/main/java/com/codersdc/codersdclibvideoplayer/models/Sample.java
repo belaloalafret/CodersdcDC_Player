@@ -23,7 +23,7 @@ public final class Sample {
 
     public final ArrayList<Pair<Long, Long>> skippedPartition;
 
-    public Sample(String uri, String name, String mimeType, File file, String srt, File srtFile, String note, String thumbURL, ArrayList<Pair<Long, Long>> skippedPartition) {
+    public Sample(String uri, String name, String mimeType, File file, String srt, File srtFile, String note, ArrayList<Pair<Long, Long>> skippedPartition) {
         this.uri = uri;
         this.name = name;
         this.mimeType = mimeType;
@@ -32,11 +32,6 @@ public final class Sample {
         this.srtFile = srtFile;
         this.note = note;
         this.skippedPartition = skippedPartition;
-    }
-
-    @Override
-    public String toString() {
-        return name;
     }
 
 }
