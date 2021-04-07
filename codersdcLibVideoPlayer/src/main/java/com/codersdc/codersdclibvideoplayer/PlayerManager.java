@@ -420,6 +420,23 @@ public class PlayerManager implements Player.EventListener, SessionAvailabilityL
         buildSubtitle(mediaItems.get(itemIndex), mediaQueue.get(itemIndex).srt, mediaQueue.get(itemIndex).srtFile);
     }
 
+    /**
+     * Returns the size of the media queue.
+     */
+    public int getMediaQueueSize() {
+        return mediaQueue.size();
+    }
+
+    /**
+     * Returns the item at the given index in the media queue.
+     *
+     * @param position The index of the item.
+     * @return The item at the given index in the media queue.
+     */
+    public Sample getItem(int position) {
+        return mediaQueue.get(position);
+    }
+
     private void maybeSetCurrentItemAndNotify(int currentItemIndex) {
         if (this.currentItemIndex != currentItemIndex) {
             this.currentItemIndex = currentItemIndex;
