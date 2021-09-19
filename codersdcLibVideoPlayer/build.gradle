@@ -30,16 +30,19 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     /*  implement ExoPlayer */
-    implementation 'com.google.android.exoplayer:exoplayer-core:2.15.0'
-    implementation 'com.google.android.exoplayer:exoplayer-ui:2.15.0'
-    implementation 'com.google.android.exoplayer:exoplayer-hls:2.15.0'
-    implementation 'com.google.android.exoplayer:exoplayer-dash:2.15.0'
-    implementation 'com.google.android.exoplayer:exoplayer-smoothstreaming:2.15.0'
     implementation 'com.google.android.exoplayer:exoplayer:2.15.0'
     implementation 'com.google.android.exoplayer:extension-cast:2.15.0'
     implementation 'com.google.android.exoplayer:extension-cronet:2.15.0'
-    implementation 'com.google.android.exoplayer:extension-mediasession:2.15.0'
-    implementation 'com.google.android.gms:play-services-cast-framework:20.0.0'
+//    implementation 'com.google.android.exoplayer:exoplayer-core:2.15.0'
+//    implementation 'com.google.android.exoplayer:exoplayer-ui:2.15.0'
+//    implementation 'com.google.android.exoplayer:exoplayer-hls:2.15.0'
+//    implementation 'com.google.android.exoplayer:exoplayer-dash:2.15.0'
+//    implementation 'com.google.android.exoplayer:exoplayer-smoothstreaming:2.15.0'
+//    implementation 'com.google.android.exoplayer:exoplayer:2.15.0'
+//    implementation 'com.google.android.exoplayer:extension-cast:2.15.0'
+//    implementation 'com.google.android.exoplayer:extension-cronet:2.15.0'
+//    implementation 'com.google.android.exoplayer:extension-mediasession:2.15.0'
+//    implementation 'com.google.android.gms:play-services-cast-framework:20.0.0'
 
     /* Event BUS */
     implementation 'org.greenrobot:eventbus:3.0.0'
