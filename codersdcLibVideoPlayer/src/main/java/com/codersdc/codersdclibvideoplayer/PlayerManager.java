@@ -506,7 +506,7 @@ public class PlayerManager implements Player.EventListener, SessionAvailabilityL
             }
         }
 
-        @Override
+
         public void onPlayerError(@NonNull ExoPlaybackException e) {
         }
 
